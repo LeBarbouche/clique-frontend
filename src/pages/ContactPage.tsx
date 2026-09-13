@@ -1,9 +1,29 @@
+import { useState, type FormEvent } from 'react';
+import { api } from '../api/client';
 import { Button } from '../components/button/button';
 import { PageHeader } from '../components/page-header/page-header';
 import { SectionHeading } from '../components/section-heading/section-heading';
 import { site } from '../data/site';
 
 export function ContactPage() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [error, setError] = useState('');
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus('sending');
+    setError('');
+    try {
+      await api.sendContact(form);
+      setForm({ name: '', email: '', message: '' });
+      setStatus('sent');
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'Le message n’a pas pu être envoyé.');
+      setStatus('error');
+    }
+  }
+
   return (
     <div className="page-shell page-shell--narrow">
       <PageHeader
@@ -52,22 +72,24 @@ export function ContactPage() {
 
           <div className="form-card">
             <h3>Formulaire de contact</h3>
-            <form className="contact-form">
-              <label>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <label htmlFor="contact-name">
                 Nom
-                <input type="text" placeholder="Votre nom" />
+                <input id="contact-name" type="text" placeholder="Votre nom" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} required minLength={2} />
               </label>
-              <label>
+              <label htmlFor="contact-email">
                 Email
-                <input type="email" placeholder="votre@email.fr" />
+                <input id="contact-email" type="email" placeholder="votre@email.fr" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} required />
               </label>
-              <label>
+              <label htmlFor="contact-message">
                 Message
-                <textarea rows={5} placeholder="Votre message..." />
+                <textarea id="contact-message" rows={5} placeholder="Votre message..." value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} required minLength={10} />
               </label>
-              <Button type="submit" fullWidth>
-                Envoyer
+              <Button type="submit" fullWidth disabled={status === 'sending'}>
+                {status === 'sending' ? 'Envoi…' : 'Envoyer'}
               </Button>
+              {status === 'sent' ? <p className="success-state" role="status">Votre message a bien été envoyé.</p> : null}
+              {status === 'error' ? <p className="error-state" role="alert">{error}</p> : null}
             </form>
           </div>
         </div>

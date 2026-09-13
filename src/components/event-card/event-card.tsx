@@ -1,18 +1,18 @@
-import type { CliqueEvent } from '../../types/event';
+import type { Event } from '../../types/api';
 import { formatDate } from '../../utils/date';
 import { getCategoryLabel } from '../../utils/event-category';
 import { Icon } from '../icon/icon';
 import './event-card.css';
 
 interface EventCardProps {
-  event: CliqueEvent;
+  event: Event;
 }
 
 export function EventCard({ event }: EventCardProps) {
   const date = formatDate(event.date);
-  const timeRange = event.endTime
-    ? `${event.startTime} – ${event.endTime}`
-    : event.startTime;
+  const timeRange = event.end_time
+    ? `${event.start_time} – ${event.end_time}`
+    : event.start_time;
 
   return (
     <article className="event-card">

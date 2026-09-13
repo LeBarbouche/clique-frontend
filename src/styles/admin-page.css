@@ -1,0 +1,19 @@
+.admin-page { max-width: 980px; margin-inline: auto; }
+.login-panel { width: min(100%, 520px); margin-inline: auto; padding: var(--space-7); border: var(--line-solid); background: var(--paper-raised); box-shadow: var(--shadow-hard); }
+.login-panel h1 { margin-block: var(--space-2) var(--space-3); font-size: var(--text-4xl); }
+.login-panel__hint { margin-top: var(--space-5); color: var(--ink-faint); font-size: var(--text-sm); }
+.admin-heading, .dashboard-intro { display: flex; align-items: end; justify-content: space-between; gap: var(--space-5); }
+.admin-heading h1 { margin-top: var(--space-2); font-size: var(--text-4xl); }
+.role-switcher { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-block: var(--space-7); }
+.role-option { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4); border: var(--line-solid); background: var(--paper-raised); text-align: left; cursor: pointer; }
+.role-option span { color: var(--ink-faint); font-size: var(--text-sm); }
+.role-option--active { background: var(--riso-mustard); box-shadow: var(--shadow-hard-sm); }
+.admin-dashboard { padding: var(--space-6); border: var(--line-solid); background: var(--paper-raised); }
+.status-dot { color: var(--riso-green); font-family: var(--font-mono); font-size: var(--text-xs); text-transform: uppercase; }
+.status-dot::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%; background: var(--riso-green); }
+.admin-modules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: var(--space-6); border: var(--line-solid); background: var(--line); }
+.admin-module { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-3); padding: var(--space-4); background: var(--paper-raised); }
+.admin-module__number { color: var(--riso-red); font-family: var(--font-mono); }
+.admin-module > span:nth-of-type(2) { grid-column: 2; color: var(--ink-faint); font-size: var(--text-sm); }
+.admin-module button { grid-column: 3; grid-row: 1 / 3; border: 0; background: transparent; color: var(--ink); font-weight: 700; cursor: pointer; }
+@media (max-width: 640px) { .admin-heading, .dashboard-intro { align-items: flex-start; flex-direction: column; } .role-switcher, .admin-modules { grid-template-columns: 1fr; } .login-panel, .admin-dashboard { padding: var(--space-5); } }

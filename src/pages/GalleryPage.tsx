@@ -1,8 +1,18 @@
+import { useEffect, useState } from 'react';
+import { api } from '../api/client';
+import type { GalleryPhoto } from '../types/api';
 import { PageHeader } from '../components/page-header/page-header';
 import { SectionHeading } from '../components/section-heading/section-heading';
-import { gallery } from '../data/gallery';
 
 export function GalleryPage() {
+  const [gallery, setGallery] = useState<GalleryPhoto[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    api.getGallery().then(setGallery).catch((reason: Error) => setError(reason.message)).finally(() => setIsLoading(false));
+  }, []);
+
   return (
     <div className="page-shell page-shell--narrow">
       <PageHeader
@@ -19,7 +29,10 @@ export function GalleryPage() {
             intro="Un aperçu des moments forts de la clique de Doissin."
           />
 
-          <div className="gallery-grid">
+          {isLoading ? <p className="empty-state" role="status">Chargement des photos…</p> : null}
+          {error ? <p className="error-state" role="alert">{error}</p> : null}
+          {!isLoading && !error && gallery.length === 0 ? <p className="empty-state">Aucune photo publiée pour le moment.</p> : null}
+          {!isLoading && !error && gallery.length > 0 ? <div className="gallery-grid">
             {gallery.map((photo) => (
               <figure key={photo.id} className="gallery-card gallery-card--large">
                 <img src={photo.src} alt={photo.alt} />
@@ -29,7 +42,7 @@ export function GalleryPage() {
                 </figcaption>
               </figure>
             ))}
-          </div>
+          </div> : null}
         </div>
       </section>
     </div>

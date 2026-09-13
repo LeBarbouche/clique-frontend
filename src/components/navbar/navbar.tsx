@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useAuth } from '../../auth/AuthContext';
 import { navItems } from '../../data/nav';
 import { site } from '../../data/site';
 import { Button } from '../button/button';
@@ -7,6 +8,7 @@ import { Icon } from '../icon/icon';
 import './navbar.css';
 
 export function Navbar() {
+  const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { pathname } = useLocation();
 
@@ -68,6 +70,7 @@ export function Navbar() {
           <Button to="/contact" className="navbar__cta">
             Nous rejoindre
           </Button>
+          {user ? <><span className="navbar__login">{user.display_name}</span><button type="button" className="navbar__login" onClick={logout}>Se déconnecter</button></> : <NavLink to="/gestion" className="navbar__login" aria-label="Ouvrir l’espace de gestion">Se connecter</NavLink>}
         </nav>
       </div>
     </header>

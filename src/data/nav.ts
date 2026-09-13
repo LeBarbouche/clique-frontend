@@ -6,5 +6,6 @@ export const navItems: NavItem[] = [
   { label: 'Membres', to: '/membres' },
   { label: 'Agenda', to: '/agenda' },
   { label: 'Galerie', to: '/galerie' },
+  { label: 'Actus', to: '/actus' },
   { label: 'Contact', to: '/contact' },
 ];

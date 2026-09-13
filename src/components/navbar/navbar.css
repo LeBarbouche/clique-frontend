@@ -116,6 +116,17 @@
 }
 
 .navbar__link--active::after {
+
+  .navbar__login {
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
   content: '';
   position: absolute;
   left: var(--space-3);
@@ -174,5 +185,9 @@
 
   .navbar__cta {
     width: 100%;
+  }
+
+  .navbar__login {
+    align-self: flex-start;
   }
 }

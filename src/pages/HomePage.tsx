@@ -1,16 +1,31 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { api } from '../api/client';
 import { Hero } from '../components/hero/hero';
 import { EventCard } from '../components/event-card/event-card';
 import { SectionHeading } from '../components/section-heading/section-heading';
 import { Button } from '../components/button/button';
-import { events } from '../data/events';
-import { gallery } from '../data/gallery';
 import { site } from '../data/site';
 import { sortByDateAsc } from '../utils/date';
+import type { Event, GalleryPhoto, NewsArticle } from '../types/api';
 
 export function HomePage() {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [gallery, setGallery] = useState<GalleryPhoto[]>([]);
+  const [news, setNews] = useState<NewsArticle[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    Promise.all([api.getEvents(), api.getGallery(), api.getNews()])
+      .then(([nextEvents, nextGallery, nextNews]) => { setEvents(nextEvents); setGallery(nextGallery); setNews(nextNews); })
+      .catch((reason: Error) => setError(reason.message))
+      .finally(() => setIsLoading(false));
+  }, []);
+
   const upcomingEvents = sortByDateAsc(events).slice(0, 3);
   const featuredGallery = gallery.slice(0, 3);
+  const latestNews = news.slice(0, 2);
 
   return (
     <>
@@ -62,6 +77,26 @@ export function HomePage() {
               <Button to="/agenda" icon="calendar">
                 Voir tout l’agenda
               </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="page-section">
+          <div className="container">
+            <div className="section-header-row">
+              <SectionHeading eyebrow="Les actus" title="La vie de la clique" intro="Les nouvelles du groupe et les rendez-vous à ne pas manquer." />
+              <Link className="inline-link" to="/actus">Toutes les actus →</Link>
+            </div>
+            <div className="home-news-grid">
+              {isLoading ? <p className="empty-state" role="status">Chargement des contenus…</p> : null}
+              {error ? <p className="error-state" role="alert">{error}</p> : null}
+              {!isLoading && !error && latestNews.length === 0 ? <p className="empty-state">Aucune actualité publiée.</p> : null}
+              {!isLoading && !error ? latestNews.map((article) => (
+                <Link className="home-news-card" to={`/actus/${article.id}`} key={article.id}>
+                  {article.image_url ? <img src={article.image_url} alt="" /> : null}
+                  <div><p className="eyebrow">Actualité</p><h3>{article.title}</h3><p>{article.content}</p></div>
+                </Link>
+              )) : null}
             </div>
           </div>
         </section>

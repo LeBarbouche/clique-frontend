@@ -21,6 +21,7 @@ interface ButtonProps {
   icon?: IconName;
   fullWidth?: boolean;
   className?: string;
+  disabled?: boolean;
 }
 
 function buildClassName(
@@ -52,6 +53,7 @@ export function Button({
   icon,
   fullWidth = false,
   className,
+  disabled = false,
 }: ButtonProps) {
   const classNames = buildClassName(variant, size, fullWidth, className);
 
@@ -85,7 +87,7 @@ export function Button({
   }
 
   return (
-    <button type={type} className={classNames} onClick={onClick}>
+    <button type={type} className={classNames} onClick={onClick} disabled={disabled}>
       {content}
     </button>
   );
