@@ -1,0 +1,95 @@
+import type { CliqueEvent } from '../types/event';
+
+export const events: CliqueEvent[] = [
+  {
+    id: 'st-andre-2026',
+    title: 'Fête de la Saint-André',
+    date: '2026-09-20',
+    startTime: '10:30',
+    endTime: '12:00',
+    venue: 'Place de la Mairie',
+    city: 'Doissin',
+    description:
+      "Aubade du matin sur la place du village, suivie d'un défilé jusqu'à la salle des fêtes.",
+    category: 'passage',
+    isFree: true,
+  },
+  {
+    id: 'concert-automne-2026',
+    title: "Concert d'automne",
+    date: '2026-10-17',
+    startTime: '20:30',
+    endTime: '22:30',
+    venue: 'Salle des fêtes',
+    city: 'Doissin',
+    description:
+      'Programme de marches, valses et airs traditionnels du Dauphiné. Entrée libre, buvette sur place.',
+    category: 'concert',
+    isFree: true,
+  },
+  {
+    id: 'ceremonie-11-novembre-2026',
+    title: 'Cérémonie du 11 Novembre',
+    date: '2026-11-11',
+    startTime: '11:00',
+    endTime: '12:00',
+    venue: 'Monument aux morts',
+    city: 'Doissin',
+    description:
+      "Accompagnement musical de la cérémonie commémorative, en présence des autorités locales.",
+    category: 'ceremonie',
+    isFree: true,
+  },
+  {
+    id: 'telethon-2026',
+    title: 'Passage pour le Téléthon',
+    date: '2026-12-05',
+    startTime: '14:00',
+    endTime: '17:00',
+    venue: 'Centre du village',
+    city: 'Doissin',
+    description:
+      "Déambulation dans les rues du village au profit du Téléthon. Les dons sont reversés à l'AFM.",
+    category: 'passage',
+    isFree: true,
+  },
+  {
+    id: 'concert-printemps-2027',
+    title: 'Concert de printemps',
+    date: '2027-04-11',
+    startTime: '16:00',
+    endTime: '18:00',
+    venue: 'Église Saint-Laurent',
+    city: 'Doissin',
+    description:
+      "Concert en l'église avec un répertoire à deux voix, fifres et clairons réunis.",
+    category: 'concert',
+    isFree: false,
+  },
+  {
+    id: 'fete-patronale-2027',
+    title: 'Fête patronale',
+    date: '2027-06-27',
+    startTime: '09:00',
+    endTime: '18:00',
+    venue: 'Parc municipal',
+    city: 'Doissin',
+    description:
+      "Toute la journée en musique : aubade, défilé, concours de tambours et bal populaire.",
+    category: 'passage',
+    isFree: true,
+  },
+  {
+    id: 'repetition-hebdo',
+    title: 'Répétition hebdomadaire',
+    date: '2027-01-08',
+    startTime: '19:30',
+    endTime: '21:30',
+    venue: 'Salle des associations',
+    city: 'Doissin',
+    description:
+      'Répétition ouverte à tous les membres, ainsi qu’aux musiciens souhaitant découvrir la clique.',
+    category: 'repetition',
+    isFree: true,
+  },
+];

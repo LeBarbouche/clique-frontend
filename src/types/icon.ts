@@ -1,0 +1,16 @@
+export type IconName =
+  | 'arrow-right'
+  | 'calendar'
+  | 'camera'
+  | 'close'
+  | 'external-link'
+  | 'facebook'
+  | 'instagram'
+  | 'mail'
+  | 'map-pin'
+  | 'menu'
+  | 'music'
+  | 'phone'
+  | 'sparkle'
+  | 'users'
+  | 'youtube';

@@ -1,0 +1,74 @@
+/* ============================================================
+   Design tokens — Clique de Doissin
+   Direction artistique : risograph / affiche imprimée
+   ============================================================ */
+
+:root {
+  /* --- Papier & encres ------------------------------------- */
+  --paper: #f6f0e4;
+  --paper-raised: #fffaf0;
+  --paper-sunk: #ece1cd;
+
+  --ink: #191610;
+  --ink-soft: #4f4838;
+  --ink-faint: #8b8271;
+
+  --riso-red: #df4527;
+  --riso-red-soft: #f3a08f;
+  --riso-green: #2f6b4a;
+  --riso-green-soft: #9dc4ab;
+  --riso-mustard: #dfa01b;
+  --riso-mustard-soft: #f0d089;
+
+  --line: #191610;
+  --line-soft: rgba(25, 22, 16, 0.16);
+
+  /* --- Typographie ----------------------------------------- */
+  --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype',
+    'Book Antiqua', 'DejaVu Serif', serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'DejaVu Sans Mono', Menlo,
+    Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.75rem;
+  --text-4xl: clamp(2.75rem, 7vw, 5rem);
+
+  /* --- Bordures & ombres ----------------------------------- */
+  --border-width: 2px;
+  --line-solid: var(--border-width) solid var(--line);
+  --line-soft-solid: 1px solid var(--line-soft);
+
+  --radius-sm: 3px;
+  --radius: 8px;
+  --radius-pill: 999px;
+
+  --shadow-hard-sm: 3px 3px 0 var(--ink);
+  --shadow-hard: 5px 5px 0 var(--ink);
+  --shadow-hard-lg: 9px 9px 0 var(--ink);
+  --shadow-hard-red: 5px 5px 0 var(--riso-red);
+
+  /* --- Rythme ---------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* --- Mise en page ---------------------------------------- */
+  --container: 1140px;
+  --container-narrow: 760px;
+  --header-height: 76px;
+
+  --transition: 160ms ease;
+}
